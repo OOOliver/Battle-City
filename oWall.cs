@@ -4,9 +4,10 @@ using UnityEngine;
 
 
 public class oWall : Wall{
-	public bool open = false;
+	public static bool open ;
 	private Animator ani;
 	void Start(){
+		open = false;
 		ani = GetComponent<Animator> ();
 	}
 	void Update(){
@@ -15,7 +16,11 @@ public class oWall : Wall{
 	void openWall(){
 		if (open == true) {
 			ani.SetBool ("open", true);
+			Invoke ("closeWall", 2);
 		}
+	}
+	void closeWall(){
+		ani.SetBool ("open", false);
 	}
 }
 
